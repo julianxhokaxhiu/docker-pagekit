@@ -13,7 +13,8 @@ RUN a2enmod rewrite
 
 # install the required binaries to be able to build and run Pagekit
 RUN apt-get update \
-  && apt-get install -y libpng12-dev libjpeg-dev libxml2-dev libgraphicsmagick1-dev zlib1g-dev graphicsmagick git zip nodejs npm \
+  && curl -sL https://deb.nodesource.com/setup_6.x | bash \
+  && apt-get install -y --no-install-recommends libpng12-dev libjpeg-dev libxml2-dev libgraphicsmagick1-dev zlib1g-dev graphicsmagick git zip nodejs \
   && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
   && docker-php-ext-install gd json mysqli pdo pdo_mysql opcache gettext exif calendar soap sockets wddx zip \
