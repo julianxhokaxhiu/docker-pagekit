@@ -6,6 +6,9 @@ PHP Docker for Pagekit
 * Apache + PHP 7.1 + VOLUME ( thanks to https://hub.docker.com/_/php/ )
 * Some PHP extensions enabled ( see below )
 * Apache mod_rewrite enabled
+* Composer
+* NodeJS / NPM
+* Bower
 
 ## Which PHP extensions come pre-loaded?
 

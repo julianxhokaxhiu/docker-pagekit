@@ -1,22 +1,24 @@
 # Pagekit Docker
 # PHP Docker for Pagekit
 #
-# VERSION 0.1
+# VERSION 0.2
 
 FROM php:7.1-apache
 MAINTAINER Julian Xhokaxhiu <info at julianxhokaxhiu dot com>
 
-LABEL Description="PHP Docker for Pagekit" Vendor="Julian Xhokaxhiu" Version="0.1"
+LABEL Description="PHP Docker for Pagekit" Vendor="Julian Xhokaxhiu" Version="0.2"
 
 # enable mod_rewrite
 RUN a2enmod rewrite
 
-# install the PHP extensions we need
+# install the required binaries to be able to build and run Pagekit
 RUN apt-get update \
-  && apt-get install -y libpng12-dev libjpeg-dev libxml2-dev libgraphicsmagick1-dev zlib1g-dev graphicsmagick \
+  && apt-get install -y libpng12-dev libjpeg-dev libxml2-dev libgraphicsmagick1-dev zlib1g-dev graphicsmagick git zip nodejs npm \
   && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-  && docker-php-ext-install gd json mysqli pdo pdo_mysql opcache gettext exif calendar soap sockets wddx zip
+  && docker-php-ext-install gd json mysqli pdo pdo_mysql opcache gettext exif calendar soap sockets wddx zip \
+  && curl --silent --show-error https://getcomposer.org/installer | php \
+  && npm install -g bower
 
 # install APCu from PECL
 RUN pecl install apcu && docker-php-ext-enable apcu
