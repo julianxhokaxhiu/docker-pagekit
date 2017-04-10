@@ -18,7 +18,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
   && docker-php-ext-install gd json mysqli pdo pdo_mysql opcache gettext exif calendar soap sockets wddx zip \
-  && curl --silent --show-error https://getcomposer.org/installer | php \
+  && curl --silent --show-error https://getcomposer.org/installer | php --install-dir=/usr/bin --filename=composer \
   && npm install -g bower
 
 # install APCu from PECL
