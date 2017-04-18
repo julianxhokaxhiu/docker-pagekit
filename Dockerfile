@@ -19,7 +19,7 @@ RUN apt-get update \
   && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
   && docker-php-ext-install gd json mysqli pdo pdo_mysql opcache gettext exif calendar soap sockets wddx zip \
   && curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
-  && npm install -g bower
+  && npm install -g bower gulp webpack
 
 # install APCu from PECL
 RUN pecl install apcu && docker-php-ext-enable apcu
