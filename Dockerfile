@@ -22,10 +22,10 @@ RUN apt-get update \
   && npm install -g bower gulp webpack
 
 # install APCu from PECL
-RUN pecl install apcu && docker-php-ext-enable apcu
+RUN pecl -vvv install apcu && docker-php-ext-enable apcu
 
 # install GMagick from PECL
-RUN pecl install gmagick-beta && docker-php-ext-enable gmagick
+RUN pecl -vvv install gmagick-beta && docker-php-ext-enable gmagick
 
 # set recommended PHP.ini settings
 # see https://secure.php.net/manual/en/opcache.installation.php
